@@ -4,7 +4,7 @@
 
 ## 설치
 
-go get github.com/yourusername/serverhealth
+go get github.com/SundaePorkCutlet/healthCheck
 
 ## 사용법
 
@@ -12,7 +12,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/yourusername/serverhealth/healthcheck"
+	"github.com/SundaePorkCutlet/healthCheck/healthcheck"
 )
 
 func main() {
