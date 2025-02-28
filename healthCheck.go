@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
 	"time"
@@ -34,6 +35,11 @@ type Config struct {
 
 // NewDefaultConfig는 기본 설정으로 Config를 생성합니다
 func NewDefaultConfig() *Config {
+	// Linux 시스템 체크
+	if runtime.GOOS != "linux" {
+		panic("This program is only supported on Linux operating systems.")
+	}
+
 	return &Config{
 		Servers:         []ServerConfig{},
 		SlackWebhookURL: "",

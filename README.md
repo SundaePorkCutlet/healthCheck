@@ -61,6 +61,7 @@ config.SetThreshold("Disk Used", 95.0)  // 디스크 사용량이 95% 이상이�
 
 ## 요구사항
 
+- Linux 운영체제
 - sshpass 명령어 (서버 접속용)
 - curl 명령어 (Slack 메시지 전송용)
 
