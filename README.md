@@ -59,6 +59,45 @@ config.SetThreshold("Memory Used", 90.0) // Warning if memory usage exceeds 90%
 config.SetThreshold("Disk Used", 95.0) // Warning if disk usage exceeds 95%
 ```
 
+### Process Monitoring Examples
+```go
+// Add specific processes to monitor for a server
+config.AddServer("10.1.0.170", "user", "password", 
+    []string{"nginx", "prometheus", "api-server"}, // specific processes
+    "")  // empty type
+
+// Use predefined process type
+config.AddProcessType("web-server", []string{"nginx", "prometheus"})
+config.AddServer("10.1.0.171", "user", "password", 
+    []string{}, // empty process list
+    "web-server") // use predefined type
+
+// Combine both approaches
+config.AddProcessType("base", []string{"prometheus", "node-exporter"})
+config.AddServer("10.1.0.172", "user", "password",
+    []string{"custom-service", "api-gateway"}, // additional processes
+    "base") // also monitor base processes
+```
+
+### Process Monitoring Examples
+```go
+// Add specific processes to monitor for a server
+config.AddServer("10.1.0.170", "user", "password", 
+    []string{"nginx", "prometheus", "api-server"}, // specific processes
+    "")  // empty type
+
+// Use predefined process type
+config.AddProcessType("web-server", []string{"nginx", "prometheus"})
+config.AddServer("10.1.0.171", "user", "password", 
+    []string{}, // empty process list
+    "web-server") // use predefined type
+
+// Combine both approaches
+config.AddProcessType("base", []string{"prometheus", "node-exporter"})
+config.AddServer("10.1.0.172", "user", "password",
+    []string{"custom-service", "api-gateway"}, // additional processes
+    "base") // also monitor base processes
+```
 
 ## Features
 
@@ -131,6 +170,26 @@ config.AddCommand("Docker Status", "systemctl status docker | grep Active")
 config.SetThreshold("CPU Idle", 15.0) // CPU 사용률이 15% 이하일 때 경고
 config.SetThreshold("Memory Used", 90.0) // 메모리 사용률이 90% 이상일 때 경고
 config.SetThreshold("Disk Used", 95.0) // 디스크 사용률이 95% 이상일 때 경고
+```
+
+### 프로세스 모니터링 예제
+```go
+// 서버에 대해 특정 프로세스 모니터링 추가
+config.AddServer("10.1.0.170", "user", "password", 
+    []string{"nginx", "prometheus", "api-server"}, // 특정 프로세스 목록
+    "")  // 빈 타입
+
+// 미리 정의된 프로세스 타입 사용
+config.AddProcessType("web-server", []string{"nginx", "prometheus"})
+config.AddServer("10.1.0.171", "user", "password", 
+    []string{}, // 빈 프로세스 목록
+    "web-server") // 미리 정의된 타입 사용
+
+// 두 방식 조합
+config.AddProcessType("base", []string{"prometheus", "node-exporter"})
+config.AddServer("10.1.0.172", "user", "password",
+    []string{"custom-service", "api-gateway"}, // 추가 프로세스
+    "base") // 기본 프로세스도 함께 모니터링
 ```
 
 ## 기능
